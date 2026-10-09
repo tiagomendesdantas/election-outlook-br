@@ -38,7 +38,7 @@ small-sample problem, and a transparent statistical model with honest uncertaint
 | Question | Model | Core equations | Set from history or judgment |
 |---|---|---|---|
 | Round one, frozen 4 Oct, 16:01 Brasília | Unweighted mean of each pollster's latest poll (12 pollsters), plus a shared election-day error | L = L̄ + e<sub>L</sub>, F = F̄ + e<sub>F</sub>, (e<sub>L</sub>, e<sub>F</sub>) ~ t<sub>5</sub>(0, σ = 4.0, ρ = −0.2) | σ from the final-poll misses of 2018 and 2022; 100,000 draws, fixed seed |
-| Runoff, from 7 Oct | Local-level state-space model, Kalman filter on a daily grid with the pollster effects in the state; drift, extra noise and pollster spread by maximum likelihood at every run | y<sub>i</sub> = θ<sub>t</sub> + δ<sub>h</sub> + ε<sub>i</sub> · θ<sub>t</sub> = θ<sub>t−1</sub> + η<sub>t</sub> · V = θ<sub>25 Oct</sub> − (κ·b<sub>1</sub> + e) | b<sub>1</sub> = 1.7 points, the polls' round-one error on the two-candidate share; κ ~ Beta(1.05, 1.72), mean 0.38, the share of it that comes back; e ~ t<sub>5</sub>, scale 1.08 points, from the final runoff polls of 2006–2022; each pollster's effect starts at 65% of its round-one effect |
+| Runoff, from 7 Oct | Local-level state-space model, Kalman filter on a daily grid with the pollster effects in the state; drift before round one, extra noise and pollster spread by maximum likelihood at every run | y<sub>i</sub> = θ<sub>t</sub> + δ<sub>h</sub> + ε<sub>i</sub> · θ<sub>t</sub> = θ<sub>t−1</sub> + η<sub>t</sub> · V = θ<sub>25 Oct</sub> − (κ·b<sub>1</sub> + e) | b<sub>1</sub> = 1.7 points, the polls' round-one error on the two-candidate share; κ ~ Beta(1.05, 1.72), mean 0.38, the share of it that comes back; e ~ t<sub>5</sub>, scale 1.08 points, from the final runoff polls of 2006–2022; each pollster's effect starts at 65% of its round-one effect; from the day after round one, drift fixed at 0.74 points a day, from how far the polls moved after round one in 2014, 2018 and 2022 |
 | Count night, 4 Oct | Municipal swing against 2022 in log-odds, pooled by state | logit p<sub>m</sub> = logit p<sub>m</sub><sup>2022</sup> + α<sub>state</sub> + ε<sub>m</sub> | State swing pulled toward the national one until the state has 200,000 valid votes counted; 2,000 simulations with a shared counting-order shock |
 | Who becomes president | Composition of the two rounds | P(president) = P(win round one) + P(runoff) × P(win runoff) | Round-one and runoff errors treated as independent, a simplification the methodology states |
 
@@ -58,8 +58,12 @@ forecast apart step by step.
 - **Round one** was frozen at 16:01 Brasília on 4 October, an hour before the polls closed, as a
   timestamped file under version control.
 - **The runoff evaluation plan** was recorded at 17:02 on 7 October, before the first updated
-  forecast, and is not edited. Changes go in dated addenda: one so far, on 8 October, written
-  before any runoff poll fielded after round one.
+  forecast, and is not edited. Changes go in dated addenda: on 8 October, written before any
+  runoff poll fielded after round one, and on 9 October, after two polls moved Lula's chance from
+  28% to 4.5% with a band of ±1.5 points. A rule written before the 2014 and 2018 polls were read
+  found that band too narrow in two of three elections, so the drift after round one now comes
+  from history. With the same polls the chance went from 4.5% to 21.6%; the methodology page gives
+  the numbers and the limits of that fix.
 - **Scores:** Brier and log score on the winner; absolute error on the vote share; whether the
   result lands in the 80% and 95% ranges.
 - **Benchmarks, at the same instants:** the frozen 4 October forecast, the plain average of each
@@ -94,6 +98,8 @@ Known weaknesses, as the methodology page states them:
   its 95% range on two of the four. The share of round-one error it carries over (κ) was
   estimated with 2022 included, so the current version is a bet backed by one election, not
   proven skill.
+- The drift after round one comes from three elections, two with large swings; it is probably
+  too wide.
 
 The runoff is scored on 26 October.
 

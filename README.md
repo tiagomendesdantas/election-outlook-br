@@ -17,7 +17,7 @@ it predicts and scored in public afterwards. Every chance is shown for both cand
 > the models work, how they are scored and how they have done so far.
 
 ![The dashboard between the two rounds](screenshots/dashboard.png)
-<sub>The dashboard on 9 October 2026, between the two rounds. The live numbers change with each new poll.</sub>
+<sub>The dashboard on 17 October 2026, eight days before the runoff. The live numbers change with each new poll.</sub>
 
 ## What this project covers
 
@@ -46,6 +46,15 @@ small-sample problem, and a transparent statistical model with honest uncertaint
 lean (the leans sum to zero), ε each poll's sampling error. The page
 [How we got here](https://brelections.tiagodantas.com/en/how-we-got-here) takes the current
 forecast apart step by step.
+
+![Every runoff poll, the average pollster's reading and the band to 25 October](screenshots/polls-consensus.png)
+<sub>Every runoff poll as a dot, the average pollster's reading as a line (each pollster's lean removed), the ± 1 sd band opening to 25 October, and the round-one result.</sub>
+
+![Turnaround or confirmation: what each candidate needs, and what happened after round one in 2014, 2018, 2022 and so far in 2026](screenshots/turnaround-or-confirmation.png)
+<sub>Added on 17 October, when part of the public expected a turnaround: what each side needs, in two symmetrical paragraphs with every number from the live state, next to the three readings per election (first week after round one, final polls, result). In 2014 and 2018 the polls moved about 4 points towards the PT candidate after round one; in all three elections the final polls gave the PT candidate more than the result.</sub>
+
+![Chance of becoming president over time: our forecast against Polymarket](screenshots/chance-vs-market.png)
+<sub>Our updated forecasts as steps over the market's price, with the frozen forecast and the two model addenda marked.</sub>
 
 ![The runoff block](screenshots/runoff-forecast.png)
 
